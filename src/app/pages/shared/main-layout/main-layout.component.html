@@ -1,2 +1,17 @@
 <router-outlet></router-outlet>
-<p>main-layout works!</p>
+<mat-toolbar color="primary">
+  <button mat-raised-button color="accent"
+          [routerLink]="['/create']"
+          [disabled]="!flafDisabledButton"
+          (click)="flafDisabledButton = !flafDisabledButton"
+  >
+    Добавить наряд
+  </button>
+  <button mat-raised-button color="warn"
+          [routerLink]="['/allTasks']"
+          [disabled]="flafDisabledButton"
+          (click)="flafDisabledButton = !flafDisabledButton"
+  >
+    Все наряды
+  </button>
+</mat-toolbar>

@@ -7,18 +7,38 @@ import { MainLayoutComponent } from './pages/shared/main-layout/main-layout.comp
 import { NewTasksComponent } from './pages/new-tasks/new-tasks.component';
 import { AllTasksComponent } from './pages/all-tasks/all-tasks.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from '@angular/material/select';
+import { BlankComponent } from './pages/blank/blank.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     NewTasksComponent,
-    AllTasksComponent
+    AllTasksComponent,
+    BlankComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

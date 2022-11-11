@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  public flafDisabledButton:boolean;
+
+  constructor() {
+    this.flafDisabledButton = false;
+  }
 
   ngOnInit(): void {
   }
