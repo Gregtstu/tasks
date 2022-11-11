@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './pages/shared/main-layout/main-layout.component';
 import { NewTasksComponent } from './pages/new-tasks/new-tasks.component';
 import { AllTasksComponent } from './pages/all-tasks/all-tasks.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AllTasksComponent } from './pages/all-tasks/all-tasks.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
