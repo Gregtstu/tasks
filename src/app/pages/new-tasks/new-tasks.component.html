@@ -12,7 +12,7 @@
           <mat-form-field appearance="outline">
             <mat-label>ФИО</mat-label>
             <input matInput placeholder="ФИО" formControlName="name" required>
-            <mat-error *ngIf="form.get('firstFormGroup.name')?.errors?.['required']"><b>*Обязательное</b> для заполнения
+            <mat-error *ngIf="form.get('name')?.errors?.['required']"><b>*Обязательное</b> для заполнения
               поле
             </mat-error>
           </mat-form-field>
@@ -24,7 +24,7 @@
               <mat-option value="Третий разряд">Третий разряд</mat-option>
               <mat-option value="Четвертый разряд">Четвертый разряд</mat-option>
             </mat-select>
-            <mat-error *ngIf="form.get('firstFormGroup.category')?.errors?.['required']">
+            <mat-error *ngIf="form.get('category')?.errors?.['required']">
               <b>*Обязательное</b> для заполнения поле
             </mat-error>
           </mat-form-field>
@@ -38,14 +38,14 @@
           <mat-form-field appearance="outline">
             <mat-label>Задание</mat-label>
             <input matInput formControlName="task" placeholder="Задание" required>
-            <mat-error *ngIf="form.get('secondFormGroup.task')?.errors?.['required']">
+            <mat-error *ngIf="form.get('task')?.errors?.['required']">
               <b>*Обязательное</b> для заполнения поле
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>норма часа</mat-label>
             <input matInput formControlName="norma" placeholder="норма часа" required>
-            <mat-error *ngIf="form.get('secondFormGroup.norma')?.errors?.['required']">
+            <mat-error *ngIf="form.get('norma')?.errors?.['required']">
               <b>*Обязательное</b> для заполнения поле
             </mat-error>
           </mat-form-field>
