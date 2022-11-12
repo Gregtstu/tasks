@@ -11,43 +11,35 @@ import {ApiService} from "../../settings/services/api.service";
 export class NewTasksComponent implements OnInit {
 
   public form!: FormGroup;
-  public sentFormaValue!:ITask | null;
-  public flag:boolean;
+  public sentFormaValue!: ITask | null;
+  public flag: boolean;
 
-  constructor(private formBuild:FormBuilder, private apiServ:ApiService) {
-    this.flag= false;
+  constructor(private formBuild: FormBuilder, private apiServ: ApiService) {
+    this.flag = false;
   }
 
   ngOnInit(): void {
     this.form = this.formBuild.group({
-      firstFormGroup:this.formBuild.group({
-        name:['', Validators.required],
-        category:['', Validators.required],
-      }),
-      secondFormGroup:this.formBuild.group({
-        task:['', Validators.required],
-        norma:['', Validators.required],
-      }),
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      task: ['', Validators.required],
+      norma: ['', Validators.required],
     })
   }
 
   submit() {
-    if(this.form.invalid) return;
-    const obj:ITask = {
-      firstFormGroup:{
-        name: this.form.value.firstFormGroup.name,
-        category:this.form.value.firstFormGroup.category,
-      },
-      secondFormGroup:{
-        task:this.form.value.secondFormGroup.task,
-        norma:this.form.value.secondFormGroup.norma,
-      },
+    if (this.form.invalid) return;
+    const obj: ITask = {
+      name: this.form.value.name,
+      category: this.form.value.category,
+      task: this.form.value.task,
+      norma: this.form.value.norma,
       date: new Date(),
-      complite:false,
+      complite: false,
     };
 
-     this.sentFormaValue = obj;
-     this.flag = true;
+    this.sentFormaValue = obj;
+    this.flag = true;
   }
 
   clear() {
@@ -56,22 +48,18 @@ export class NewTasksComponent implements OnInit {
   }
 
   create() {
-    const obj:ITask = {
-      firstFormGroup:{
-        name: this.form.value.firstFormGroup.name,
-        category:this.form.value.firstFormGroup.category,
-      },
-      secondFormGroup:{
-        task:this.form.value.secondFormGroup.task,
-        norma:this.form.value.secondFormGroup.norma,
-      },
+    const obj: ITask = {
+      name: this.form.value.name,
+      category: this.form.value.category,
+      task: this.form.value.task,
+      norma: this.form.value.norma,
       date: new Date(),
-      complite:false,
+      complite: false,
     };
     this.apiServ.addTask(obj)
       .subscribe({
-        next:(res) => {
-          console.log(res);
+        next: (res) => {
+          // console.log(res);
         },
         error: (er) => {
           console.log(er)

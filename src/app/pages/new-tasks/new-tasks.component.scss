@@ -1,23 +1,38 @@
-.flex{
+.flex {
   display: flex;
   justify-content: space-between;
 
-  button{
+  button {
     max-width: 400px;
     border-radius: 20px;
     font-size: 20px;
   }
 }
+
 mat-stepper {
-  background: -webkit-linear-gradient(top,#8fb0ff,#709bff,#6190ff);
-  .flex{
+  background: -webkit-linear-gradient(top, #8fb0ff, #709bff, #6190ff);
+
+  .flex {
     display: flex;
     flex-direction: column;
   }
+
   mat-form-field {
-    width: 50%;
-    input{
+    width: 100%;
+
+    input {
       width: 100%;
     }
+  }
+}
+
+.finish {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+
+  button{
+    font-size: 20px;
   }
 }

@@ -1,13 +1,13 @@
 <div class="print" *ngIf="task">
   <mat-card class="example-card">
     <mat-card-title-group>
-      <mat-card-title>{{task.firstFormGroup.name}}</mat-card-title>
+      <mat-card-title>{{task.name}}</mat-card-title>
     </mat-card-title-group>
     <mat-card-content>
       <div class="flex">
-        <p>категория: <b>{{task.firstFormGroup.category}}</b></p>
-        <p>задание: <b>{{task.secondFormGroup.task}}</b></p>
-        <p>норма часа: <b>{{task.secondFormGroup.norma}}</b></p>
+        <p>категория: <b>{{task.category}}</b></p>
+        <p>задание: <b>{{task.task}}</b></p>
+        <p>норма часа: <b>{{task.norma}}</b></p>
       </div>
       <div class="flex">
         <p><b>Подпись работника:_______________</b></p>

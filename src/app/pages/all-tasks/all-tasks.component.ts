@@ -12,7 +12,7 @@ import {ITask} from "../../settings/interfaces/itask";
 })
 export class AllTasksComponent implements OnInit {
   public displayedColumns: string[] = ['№','name', 'task', 'actions'];
-  public dataSource: MatTableDataSource<any>;
+  public dataSource: MatTableDataSource<ITask>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -25,7 +25,6 @@ export class AllTasksComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTasks();
   }
-
 
   getAllTasks(): void {
     this.apiServ.getAll()
@@ -56,9 +55,9 @@ export class AllTasksComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+
 }

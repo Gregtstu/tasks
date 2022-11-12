@@ -7,7 +7,7 @@
   <form [formGroup]="form">
     <mat-stepper #stepper>
       <mat-step>
-        <div class="flex" formGroupName="firstFormGroup">
+        <div class="flex">
           <ng-template matStepLabel>ФИО</ng-template>
           <mat-form-field appearance="outline">
             <mat-label>ФИО</mat-label>
@@ -34,21 +34,19 @@
         </div>
       </mat-step>
       <mat-step label="Задание">
-        <div class="flex" formGroupName="secondFormGroup">
+        <div class="flex">
           <mat-form-field appearance="outline">
             <mat-label>Задание</mat-label>
             <input matInput formControlName="task" placeholder="Задание" required>
-            <mat-error *ngIf="form.get('secondFormGroup.task')?.errors?.['required']"><b>*Обязательное</b> для
-              заполнения
-              поле
+            <mat-error *ngIf="form.get('secondFormGroup.task')?.errors?.['required']">
+              <b>*Обязательное</b> для заполнения поле
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>норма часа</mat-label>
             <input matInput formControlName="norma" placeholder="норма часа" required>
-            <mat-error *ngIf="form.get('secondFormGroup.norma')?.errors?.['required']"><b>*Обязательное</b> для
-              заполнения
-              поле
+            <mat-error *ngIf="form.get('secondFormGroup.norma')?.errors?.['required']">
+              <b>*Обязательное</b> для заполнения поле
             </mat-error>
           </mat-form-field>
           <div>
@@ -59,14 +57,16 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Сохранение</ng-template>
-        <p *ngIf="form.valid; else  err">Для создания нового наряда нажми кнопку "Создать"</p>
-        <ng-template #err>
-          <mat-error>Заполни все поля формы</mat-error>
-        </ng-template>
-        <div>
-          <button mat-button matStepperPrevious>Назад</button>
-          <button mat-button  (click)="submit(); stepper.reset()" [disabled]="form.invalid">Создать
-          </button>
+        <div class="finish">
+          <p *ngIf="form.valid; else  err">Для создания нового наряда нажми кнопку "Создать"</p>
+          <ng-template #err>
+            <mat-error>Заполни все поля формы</mat-error>
+          </ng-template>
+          <div>
+            <button mat-button matStepperPrevious>Назад</button>
+            <button mat-button (click)="submit(); stepper.reset()" [disabled]="form.invalid">Создать
+            </button>
+          </div>
         </div>
       </mat-step>
     </mat-stepper>
