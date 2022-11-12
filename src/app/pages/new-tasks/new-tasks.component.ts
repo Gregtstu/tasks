@@ -11,7 +11,7 @@ import {ApiService} from "../../settings/services/api.service";
 export class NewTasksComponent implements OnInit {
 
   public form!: FormGroup;
-  public sentFormaValue!:ITask;
+  public sentFormaValue!:ITask | null;
   public flag:boolean;
 
   constructor(private formBuild:FormBuilder, private apiServ:ApiService) {
@@ -47,10 +47,28 @@ export class NewTasksComponent implements OnInit {
     };
 
      this.sentFormaValue = obj;
+     this.flag = true;
   }
 
-  createTask(task: ITask) {
-    this.apiServ.addTask(task)
+  clear() {
+    this.sentFormaValue = null;
+    this.flag = false;
+  }
+
+  create() {
+    const obj:ITask = {
+      firstFormGroup:{
+        name: this.form.value.firstFormGroup.name,
+        category:this.form.value.firstFormGroup.category,
+      },
+      secondFormGroup:{
+        task:this.form.value.secondFormGroup.task,
+        norma:this.form.value.secondFormGroup.norma,
+      },
+      date: new Date(),
+      complite:false,
+    };
+    this.apiServ.addTask(obj)
       .subscribe({
         next:(res) => {
           console.log(res);
@@ -60,5 +78,9 @@ export class NewTasksComponent implements OnInit {
         }
       })
     this.form.reset();
+    window.print();
+    this.sentFormaValue = null;
+    this.flag = false;
   }
+
 }

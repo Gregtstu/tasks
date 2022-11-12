@@ -1,4 +1,4 @@
-<div *ngIf="task">
+<div class="print" *ngIf="task">
   <mat-card class="example-card">
     <mat-card-title-group>
       <mat-card-title>{{task.firstFormGroup.name}}</mat-card-title>
@@ -15,8 +15,4 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-action-row>
-    <button mat-raised-button color="warn" (click)="clear()">отмена</button>
-    <button mat-raised-button color="accent" (click)="create()">сохранить и распечатать</button>
-  </mat-action-row>
 </div>

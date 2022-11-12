@@ -3,3 +3,14 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+mat-action-row{
+  display: flex;
+  justify-content: space-between;
+
+  button{
+    max-width: 400px;
+    border-radius: 20px;
+    font-size: 20px;
+  }
+}

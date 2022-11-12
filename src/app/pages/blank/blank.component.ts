@@ -8,8 +8,7 @@ import {ITask} from "../../settings/interfaces/itask";
 })
 export class BlankComponent implements OnInit {
 
-  @Input() task!:ITask | undefined;
-  @Input() flag!:boolean;
+  @Input() task!:ITask | null;
   @Output() sentTask:EventEmitter<ITask>;
   constructor() {
     this.sentTask = new EventEmitter<ITask>();
@@ -18,12 +17,5 @@ export class BlankComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clear() {
-    this.task = undefined;
-  }
 
-  create() {
-    this.sentTask.emit(this.task);
-    this.task = undefined;
-  }
 }

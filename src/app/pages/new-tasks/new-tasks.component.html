@@ -1,65 +1,74 @@
-<app-blank [task]="sentFormaValue" [flag]="flag" (sentTask)="createTask($event)"></app-blank>
-
-<form [formGroup]="form">
-  <mat-stepper #stepper>
-    <mat-step>
-      <div class="flex" formGroupName="firstFormGroup">
-        <ng-template matStepLabel>ФИО</ng-template>
-        <mat-form-field appearance="outline">
-          <mat-label>ФИО</mat-label>
-          <input matInput placeholder="ФИО" formControlName="name" required>
-          <mat-error *ngIf="form.get('firstFormGroup.name')?.errors?.['required']"><b>*Обязательное</b> для заполнения
-            поле
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Категория</mat-label>
-          <mat-select formControlName="category">
-            <mat-option value="Первая">Первая</mat-option>
-            <mat-option value="Вторая">Вторая</mat-option>
-            <mat-option value="Третья">Третья</mat-option>
-            <mat-option value="Четвертая">Четвертая</mat-option>
-          </mat-select>
-          <mat-error *ngIf="form.get('firstFormGroup.category')?.errors?.['required']"><b>*Обязательное</b> для
-            заполнения
-            поле
-          </mat-error>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
+<app-blank [task]="sentFormaValue"></app-blank>
+<div class="flex" *ngIf="flag; else forma">
+  <button mat-raised-button color="warn" (click)="clear()">Отменить</button>
+  <button mat-raised-button color="warn" (click)="create()">Сохранить и распечатать</button>
+</div>
+<ng-template #forma>
+  <form [formGroup]="form">
+    <mat-stepper #stepper>
+      <mat-step>
+        <div class="flex" formGroupName="firstFormGroup">
+          <ng-template matStepLabel>ФИО</ng-template>
+          <mat-form-field appearance="outline">
+            <mat-label>ФИО</mat-label>
+            <input matInput placeholder="ФИО" formControlName="name" required>
+            <mat-error *ngIf="form.get('firstFormGroup.name')?.errors?.['required']"><b>*Обязательное</b> для заполнения
+              поле
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Разряд</mat-label>
+            <mat-select formControlName="category">
+              <mat-option value="Первый разряд">Первый разряд</mat-option>
+              <mat-option value="Второй разряд">Второй разряд</mat-option>
+              <mat-option value="Третий разряд">Третий разряд</mat-option>
+              <mat-option value="Четвертый разряд">Четвертый разряд</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('firstFormGroup.category')?.errors?.['required']">
+              <b>*Обязательное</b> для заполнения поле
+            </mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Далее</button>
+          </div>
         </div>
-      </div>
-    </mat-step>
-    <mat-step label="Задание">
-      <div class="flex" formGroupName="secondFormGroup">
-        <mat-form-field appearance="outline">
-          <mat-label>Задание</mat-label>
-          <input matInput formControlName="task" placeholder="Задание" required>
-          <mat-error *ngIf="form.get('secondFormGroup.task')?.errors?.['required']"><b>*Обязательное</b> для заполнения
-            поле
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>норма часа</mat-label>
-          <input matInput formControlName="norma" placeholder="норма часа" required>
-          <mat-error *ngIf="form.get('secondFormGroup.norma')?.errors?.['required']"><b>*Обязательное</b> для заполнения
-            поле
-          </mat-error>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+      </mat-step>
+      <mat-step label="Задание">
+        <div class="flex" formGroupName="secondFormGroup">
+          <mat-form-field appearance="outline">
+            <mat-label>Задание</mat-label>
+            <input matInput formControlName="task" placeholder="Задание" required>
+            <mat-error *ngIf="form.get('secondFormGroup.task')?.errors?.['required']"><b>*Обязательное</b> для
+              заполнения
+              поле
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>норма часа</mat-label>
+            <input matInput formControlName="norma" placeholder="норма часа" required>
+            <mat-error *ngIf="form.get('secondFormGroup.norma')?.errors?.['required']"><b>*Обязательное</b> для
+              заполнения
+              поле
+            </mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Назад</button>
+            <button mat-button matStepperNext>Далее</button>
+          </div>
         </div>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Сохранение</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button type="button" (click)="submit(); stepper.reset()">submit</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
-</form>
-
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Сохранение</ng-template>
+        <p *ngIf="form.valid; else  err">Для создания нового наряда нажми кнопку "Создать"</p>
+        <ng-template #err>
+          <mat-error>Заполни все поля формы</mat-error>
+        </ng-template>
+        <div>
+          <button mat-button matStepperPrevious>Назад</button>
+          <button mat-button  (click)="submit(); stepper.reset()" [disabled]="form.invalid">Создать
+          </button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
+</ng-template>
