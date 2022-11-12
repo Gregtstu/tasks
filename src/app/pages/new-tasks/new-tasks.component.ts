@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ITask} from "../../settings/interfaces/itask";
 import {ApiService} from "../../settings/services/api.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-new-tasks',
@@ -14,7 +15,12 @@ export class NewTasksComponent implements OnInit {
   public sentFormaValue!: ITask | null;
   public flag: boolean;
 
-  constructor(private formBuild: FormBuilder, private apiServ: ApiService) {
+  constructor(
+    private formBuild: FormBuilder,
+    private apiServ: ApiService,
+    private toastr: ToastrService
+  )
+  {
     this.flag = false;
   }
 
@@ -41,7 +47,13 @@ export class NewTasksComponent implements OnInit {
     this.sentFormaValue = obj;
     this.flag = true;
   }
+  showSuccess() {
+    this.toastr.success('Успешно добавлен!', 'Новый наряд');
+  }
 
+  showerror() {
+    this.toastr.error('Ошибка!', 'не получилось добавить!');
+  }
   clear() {
     this.sentFormaValue = null;
     this.flag = false;
@@ -60,9 +72,11 @@ export class NewTasksComponent implements OnInit {
       .subscribe({
         next: (res) => {
           // console.log(res);
+          this.showSuccess();
         },
         error: (er) => {
           console.log(er)
+          this.showerror();
         }
       })
     this.form.reset();

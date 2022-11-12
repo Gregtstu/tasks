@@ -4,6 +4,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {ApiService} from "../../settings/services/api.service";
 import {ITask} from "../../settings/interfaces/itask";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-all-tasks',
@@ -18,12 +19,16 @@ export class AllTasksComponent implements OnInit {
 
 
 
-  constructor(private apiServ: ApiService) {
+  constructor(private apiServ: ApiService, private toastr: ToastrService) {
     this.dataSource = new MatTableDataSource();
   }
 
   ngOnInit(): void {
     this.getAllTasks();
+  }
+
+  onShowDelete():void{
+    this.toastr.info('Успешно удален!', 'наряд удален из списка');
   }
 
   getAllTasks(): void {
@@ -43,6 +48,7 @@ export class AllTasksComponent implements OnInit {
   delete(id: string): void {
     this.apiServ.deleteTask(id).subscribe({
         next: (res) => {
+          this.onShowDelete();
           this.getAllTasks();
         },
       error: (er) => {
