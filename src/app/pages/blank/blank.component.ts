@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ITask} from "../../settings/interfaces/itask";
 
 @Component({
   selector: 'app-blank',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlankComponent implements OnInit {
 
-  constructor() { }
+  @Input() task!:ITask | undefined;
+  @Input() flag!:boolean;
+  @Output() sentTask:EventEmitter<ITask>;
+  constructor() {
+    this.sentTask = new EventEmitter<ITask>();
+  }
 
   ngOnInit(): void {
   }
 
+  clear() {
+    this.task = undefined;
+  }
+
+  create() {
+    this.sentTask.emit(this.task);
+    this.task = undefined;
+  }
 }

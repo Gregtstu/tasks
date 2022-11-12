@@ -1,17 +1,11 @@
 <router-outlet></router-outlet>
 <mat-toolbar color="primary">
-  <button mat-raised-button color="accent"
-          [routerLink]="['/create']"
-          [disabled]="!flafDisabledButton"
-          (click)="flafDisabledButton = !flafDisabledButton"
-  >
-    Добавить наряд
-  </button>
-  <button mat-raised-button color="warn"
-          [routerLink]="['/allTasks']"
-          [disabled]="flafDisabledButton"
-          (click)="flafDisabledButton = !flafDisabledButton"
-  >
-    Все наряды
-  </button>
+  <ul>
+    <li [routerLink]="['/create']">
+      <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Создать наряд</a>
+    </li>
+    <li [routerLink]="['/allTasks']">
+      <a routerLinkActive="active">Все наряды</a>
+    </li>
+  </ul>
 </mat-toolbar>

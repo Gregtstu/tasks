@@ -1,4 +1,4 @@
-<app-blank></app-blank>
+<app-blank [task]="sentFormaValue" [flag]="flag" (sentTask)="createTask($event)"></app-blank>
 
 <form [formGroup]="form">
   <mat-stepper #stepper>
@@ -57,10 +57,9 @@
       <p>You are now done.</p>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button type="button" (click)="submit()">submit</button>
+        <button mat-button type="button" (click)="submit(); stepper.reset()">submit</button>
       </div>
     </mat-step>
   </mat-stepper>
-
 </form>
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ITask} from "../../settings/interfaces/itask";
+import {ApiService} from "../../settings/services/api.service";
 
 @Component({
   selector: 'app-new-tasks',
@@ -7,8 +9,14 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./new-tasks.component.scss']
 })
 export class NewTasksComponent implements OnInit {
+
   public form!: FormGroup;
-  constructor(private formBuild:FormBuilder) { }
+  public sentFormaValue!:ITask;
+  public flag:boolean;
+
+  constructor(private formBuild:FormBuilder, private apiServ:ApiService) {
+    this.flag= false;
+  }
 
   ngOnInit(): void {
     this.form = this.formBuild.group({
@@ -24,6 +32,33 @@ export class NewTasksComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value)
+    if(this.form.invalid) return;
+    const obj:ITask = {
+      firstFormGroup:{
+        name: this.form.value.firstFormGroup.name,
+        category:this.form.value.firstFormGroup.category,
+      },
+      secondFormGroup:{
+        task:this.form.value.secondFormGroup.task,
+        norma:this.form.value.secondFormGroup.norma,
+      },
+      date: new Date(),
+      complite:false,
+    };
+
+     this.sentFormaValue = obj;
+  }
+
+  createTask(task: ITask) {
+    this.apiServ.addTask(task)
+      .subscribe({
+        next:(res) => {
+          console.log(res);
+        },
+        error: (er) => {
+          console.log(er)
+        }
+      })
+    this.form.reset();
   }
 }

@@ -1,13 +1,24 @@
 mat-toolbar{
   position: absolute;
   bottom: 0;
+  ul{
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
 
-  button{
-    width: 50%;
-    cursor: pointer;
-  }
+    li{
+      width: 45%;
+      border-radius: 20px;
+      background-color: tomato;
+      text-align: center;
+      cursor: pointer;
 
-  button:disabled{
-    cursor: not-allowed;
+      a.active{
+        color: black;
+      }
+
+    }
   }
 }

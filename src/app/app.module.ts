@@ -16,6 +16,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from '@angular/material/select';
 import { BlankComponent } from './pages/blank/blank.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {HttpClientModule} from "@angular/common/http";
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -37,7 +42,12 @@ import { BlankComponent } from './pages/blank/blank.component';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    MatExpansionModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
 
   ],
   providers: [],
