@@ -11,7 +11,7 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   addTask(task:ITask):Observable<ITask>{
-    return this.http.post<ITask>('https://tasks-dcdc8-default-rtdb.firebaseio.com/tasks.json', task)
+    return this.http.post<ITask>('https://tasks-d16ae-default-rtdb.firebaseio.com/tasks.json', task)
       .pipe(map(res => {
           return {
             ...task,
@@ -22,7 +22,7 @@ export class ApiService {
   }
 
   getAll():Observable<ITask[]> {
-    return this.http.get<ITask[]>('https://tasks-dcdc8-default-rtdb.firebaseio.com/tasks.json')
+    return this.http.get<ITask[]>('https://tasks-d16ae-default-rtdb.firebaseio.com/tasks.json')
       .pipe( map ( res => {
         return Object.keys(res)
           .map( (key:any) => ({
@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   deleteTask(id: string){
-    return this.http.delete<any>(`https://tasks-dcdc8-default-rtdb.firebaseio.com/tasks/${id}.json`);
+    return this.http.delete<any>(`https://tasks-d16ae-default-rtdb.firebaseio.com/tasks/${id}.json`);
   }
 
 }
